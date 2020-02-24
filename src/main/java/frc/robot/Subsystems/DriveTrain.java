@@ -9,6 +9,9 @@ package frc.robot.Subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj.Joystick;
+import com.ctre.phoenix.motorcontrol.can.TalonFX;
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import frc.robot.Falcon_500_Config;
 
 
 
@@ -18,12 +21,19 @@ public class DriveTrain extends SubsystemBase {
   /**
    * Creates a new DriveTrain.
    */
+  public static DriveTrain instance;
 
-  double leftVelocity ;
-  double rightVelocity;
+  public double leftVelocity ;
+  public double rightVelocity;
   
-  public DriveTrain() {
+  //public DriveTrain() {
 
+  //}
+  public static DriveTrain getInstance(){
+    if (instance == null) {
+      instance = new DriveTrain();
+    }
+    return instance;
   }
 
  /*
@@ -32,6 +42,8 @@ public class DriveTrain extends SubsystemBase {
   public void drive(final Joystick controller){
     leftVelocity = (-1 * controller.getX() + controller.getY()) * RobotMap.TICK_SPEED*0.75;
     rightVelocity = (-1 * controller.getX() - controller.getY()) * RobotMap.TICK_SPEED*0.75;
+    Falcon_500_Config._talonLeftMaster.set(ControlMode.Velocity, leftVelocity);
+    Falcon_500_Config._talonRightMaster.set(ControlMode.Velocity, rightVelocity);
 
    // differentialDrive.arcadeDrive(RobotMap.ROBOT_SPEED * -controller.getY(), RobotMap.ROBOT_TURNING_SPEED * -controller.getX());
   }  
@@ -40,5 +52,6 @@ public class DriveTrain extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
+    
   }
 }

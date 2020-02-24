@@ -15,6 +15,8 @@ import com.ctre.phoenix.motorcontrol.can.TalonFX;
 
 import edu.wpi.first.wpilibj.Joystick;
 
+import frc.robot.RobotMap;
+
 public class Falcon_500_Config extends PIDSubsystem {
   /**
    * Creates a new Falcon_500_Config.
@@ -41,14 +43,14 @@ public class Falcon_500_Config extends PIDSubsystem {
 
     _talonLeftMaster.configNominalOutputForward(0);
     _talonLeftMaster.configNominalOutputReverse(0);
-    _talonLeftMaster.configPeakOutputForward(0.5);
-    _talonLeftMaster.configPeakOutputReverse(-0.5);
+    _talonLeftMaster.configPeakOutputForward(RobotMap.PEAK_OUTPUT);
+    _talonLeftMaster.configPeakOutputReverse(-RobotMap.PEAK_OUTPUT);
 
     _talonLeftMaster.selectProfileSlot(0, 0);
-    _talonLeftMaster.config_kF(0, 0.4);
-    _talonLeftMaster.config_kP(0,0.07);
-    _talonLeftMaster.config_kI(0,0);
-    _talonLeftMaster.config_kD(0,0);
+    _talonLeftMaster.config_kF(0, RobotMap.KF);
+    _talonLeftMaster.config_kP(0,RobotMap.KP);
+    _talonLeftMaster.config_kI(0,RobotMap.KI);
+    _talonLeftMaster.config_kD(0,RobotMap.KD);
 
     _talonLeftMaster.configMotionAcceleration(1000);
     _talonLeftMaster.configMotionCruiseVelocity(8192);
@@ -61,15 +63,15 @@ public class Falcon_500_Config extends PIDSubsystem {
 
     _talonRightMaster.configNominalOutputForward(0);
     _talonRightMaster.configNominalOutputReverse(0);
-    _talonRightMaster.configPeakOutputForward(0.5);
-    _talonRightMaster.configPeakOutputReverse(-0.5);
+    _talonRightMaster.configPeakOutputForward(RobotMap.PEAK_OUTPUT);
+    _talonRightMaster.configPeakOutputReverse(-RobotMap.PEAK_OUTPUT);
 
     _talonRightMaster.selectProfileSlot(0, 0);
-    _talonRightMaster.config_kF(0, 0.4);
-    _talonRightMaster.config_kP(0,0.07);
-    _talonRightMaster.config_kI(0,0);
-    _talonRightMaster.config_kD(0,0);
-
+    _talonRightMaster.config_kF(0, RobotMap.KF);
+    _talonRightMaster.config_kP(0,RobotMap.KP);
+    _talonRightMaster.config_kI(0,RobotMap.KI);
+    _talonRightMaster.config_kD(0,RobotMap.KD);
+    
     _talonRightMaster.configMotionAcceleration(1000);
     _talonRightMaster.configMotionCruiseVelocity(8192);
   }

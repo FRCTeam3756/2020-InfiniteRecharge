@@ -27,8 +27,18 @@ public class RobotMap {
     
     //This is the speed of the robot in auto
     public static final double AUTO_ROBOT_SPEED = 1;
+
+    public static final double PEAK_OUTPUT = 0.5;
+
+    public static final double KF = 0.4;
+
+    public static final double KP = 0.07;
+    public static final double KI = 0.0;
+    public static final double KD = 0.0;
     //public static final double AUTO_ROBOT_TURNING_SPEED = 1;
 
+    public static final int SOLE_IN = 6;
+    public static final int SOLE_OUT = 7;
 
     public static final double TICK_SPEED = 2048;
 
