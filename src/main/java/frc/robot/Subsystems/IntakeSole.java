@@ -26,7 +26,7 @@ public class IntakeSole extends Subsystem {
   
   public IntakeSole() {
     this.compressor = new Compressor();
-    this.sole = new DoubleSolenoid(7, 6); //TODO: find correct channels
+    this.sole = new DoubleSolenoid(7, 6);
   }
 
   public static IntakeSole getInstance() {
@@ -36,7 +36,6 @@ public class IntakeSole extends Subsystem {
     return instance;
   }
 
-  //TODO: find correct button values
   public void action (Joystick j) {
     
     if (j.getRawButton(RobotMap.SOLE_IN)) {

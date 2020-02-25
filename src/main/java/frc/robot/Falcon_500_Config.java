@@ -32,7 +32,7 @@ public class Falcon_500_Config extends PIDSubsystem {
   public Falcon_500_Config() {
     super(
         // The PIDController used by the subsystem
-        new PIDController(0.4, 0.07, 0));
+        new PIDController(0.0, 0.0, 0));
 
       
         _talonLeftMaster.configFactoryDefault();
@@ -71,7 +71,7 @@ public class Falcon_500_Config extends PIDSubsystem {
     _talonRightMaster.config_kP(0,RobotMap.KP);
     _talonRightMaster.config_kI(0,RobotMap.KI);
     _talonRightMaster.config_kD(0,RobotMap.KD);
-    
+
     _talonRightMaster.configMotionAcceleration(1000);
     _talonRightMaster.configMotionCruiseVelocity(8192);
   }

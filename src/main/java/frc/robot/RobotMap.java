@@ -42,4 +42,16 @@ public class RobotMap {
 
     public static final double TICK_SPEED = 2048;
 
+    public static final double INTAKE_SPEED = 0.5;
+    public static final int INTAKE_PORT = 1;
+    public static final int INTAKE_IN = 3;
+    public static final int INTAKE_OUT = 2;
+
+    public static final int SHOOTER_PORT1 = 2;
+    public static final int SHOOTER_PORT2 = 3;
+
+    public static final int SHOOTER_SHOOT = 1;
+    public static final int SHOOTER_SPEED = 1;
+
+
 }//end of class RobotMap

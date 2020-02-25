@@ -11,19 +11,19 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.Joystick;
-import java.util.ArrayList;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.FeedbackDevice;
+//import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.TalonFXInvertType;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
-import com.ctre.phoenix.motorcontrol.can.TalonFXConfiguration;
-import com.ctre.phoenix.music.Orchestra;
+//import com.ctre.phoenix.motorcontrol.can.TalonFXConfiguration;
 
 import frc.robot.Subsystems.DriveTrain;
 import frc.robot.Falcon_500_Config;
 import frc.robot.Subsystems.IntakeSole;
+import frc.robot.Subsystems.Intake;
+import frc.robot.Subsystems.Shooter;
 /**
  * The VM is configured to automatically run this class, and to call the
  * functions corresponding to each mode, as described in the TimedRobot
@@ -54,11 +54,8 @@ public class Robot extends TimedRobot {
   TalonFX _talonRightMaster = new TalonFX(5);
   TalonFX _talonRightSlave = new TalonFX(6);
 
-  //TalonFX[] instruments = {_talonLeftMaster, _talonLeftSlave, _talonRightMaster, _talonRightSlave};
-
   Joystick _joy = new Joystick(0);
 
-  //int _loops = 0;
 
   /**
    * This function is run when the robot is first started up and should be
@@ -116,8 +113,10 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousPeriodic() {
-    Falcon_500_Config._talonLeftMaster.set(ControlMode.MotionMagic, 4096*10);
-    Falcon_500_Config._talonRightMaster.set(ControlMode.MotionMagic, 4096*-10);
+    //Falcon_500_Config._talonLeftMaster.set(ControlMode.MotionMagic, 4096*10);
+    //Falcon_500_Config._talonRightMaster.set(ControlMode.MotionMagic, 4096*-10);
+    Falcon_500_Config._talonLeftMaster.set(ControlMode.Velocity, RobotMap.TICK_SPEED*-0.75);
+    Falcon_500_Config._talonRightMaster.set(ControlMode.Velocity, RobotMap.TICK_SPEED*0.75);
   }
 
   /**
@@ -125,13 +124,15 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void teleopInit() {
-    //orchestra.loadMusic(song);
+
   }
   @Override
   public void teleopPeriodic() {
-    //orchestra.play();
     DriveTrain.getInstance().drive(OI.getInstance().getJoystick1());
     IntakeSole.getInstance().action(OI.getInstance().getJoystick1());
+    Intake.getInstance().move(OI.getInstance().getJoystick1());
+    Shooter.getInstance().action(OI.getInstance().getJoystick1());
+
   }
 
   /**

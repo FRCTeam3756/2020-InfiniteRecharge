@@ -9,11 +9,9 @@ package frc.robot.Subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj.Joystick;
-import com.ctre.phoenix.motorcontrol.can.TalonFX;
+//import com.ctre.phoenix.motorcontrol.can.TalonFX;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import frc.robot.Falcon_500_Config;
-
-
 
 import frc.robot.RobotMap;
 
@@ -23,7 +21,7 @@ public class DriveTrain extends SubsystemBase {
    */
   public static DriveTrain instance;
 
-  public double leftVelocity ;
+  public double leftVelocity;
   public double rightVelocity;
   
   //public DriveTrain() {
@@ -45,7 +43,6 @@ public class DriveTrain extends SubsystemBase {
     Falcon_500_Config._talonLeftMaster.set(ControlMode.Velocity, leftVelocity);
     Falcon_500_Config._talonRightMaster.set(ControlMode.Velocity, rightVelocity);
 
-   // differentialDrive.arcadeDrive(RobotMap.ROBOT_SPEED * -controller.getY(), RobotMap.ROBOT_TURNING_SPEED * -controller.getX());
   }  
 
 
