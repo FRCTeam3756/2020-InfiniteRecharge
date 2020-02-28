@@ -115,8 +115,8 @@ public class Robot extends TimedRobot {
   public void autonomousPeriodic() {
     //Falcon_500_Config._talonLeftMaster.set(ControlMode.MotionMagic, 4096*10);
     //Falcon_500_Config._talonRightMaster.set(ControlMode.MotionMagic, 4096*-10);
-    Falcon_500_Config._talonLeftMaster.set(ControlMode.Velocity, RobotMap.TICK_SPEED*-0.75);
-    Falcon_500_Config._talonRightMaster.set(ControlMode.Velocity, RobotMap.TICK_SPEED*0.75);
+    Falcon_500_Config._talonLeftMaster.set(ControlMode.Position, RobotMap.TICK_SPEED*10);
+    Falcon_500_Config._talonRightMaster.set(ControlMode.Position, RobotMap.TICK_SPEED*-10);
   }
 
   /**

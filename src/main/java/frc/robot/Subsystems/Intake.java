@@ -17,48 +17,53 @@ import frc.robot.RobotMap;
 
 public class Intake extends Subsystem {
 
+  //This creates an instance of the Intake class
   private static Intake instance;
 
+  //This creates a speed controller for the victor
   private static SpeedController victor;
 
-
-
+  //This method returns an instance of the Intake class if one does not exist
   public static Intake getInstance() {
     if (instance == null)
       instance = new Intake(RobotMap.INTAKE_PORT);
     return instance;
   }
 
+  //This makes the speed controller a PWMVictorSPX
   public Intake(int port) {
     victor = new PWMVictorSPX(port);
   }
 
+  //This method is the main method
   public void move(Joystick stick){
+   
     if(stick.getRawButton(RobotMap.INTAKE_IN)){
       Up(true);
-    }
+    } //If the intake in button on the joystick is pressed, run the Up method
+
     else if(stick.getRawButton(RobotMap.INTAKE_OUT)){
-        Down(true);
-      }
+      Down(true);
+    } //If the intake out button on the joystick is pressed, run the Down method
 
     else{
       Off();
-    }
-    }
-    
+    } //If none of the buttons are pressed, run the Off method
 
+  }
   
-  
-
+  //This method makes the intake go down by setting the victor speed as INTAKE_SPEED
   private void Down(boolean down) {
     if(down == true)
       victor.set(RobotMap.INTAKE_SPEED);
   }
 
+  //This method stops the motor
   private void Off() {
     victor.stopMotor();
   }
 
+  //This method makes the intake go up by setting the victor speed as -INTAKE_SPEED
   private void Up(boolean up) {
     if (up == true)
      victor.set(-RobotMap.INTAKE_SPEED);
@@ -67,4 +72,5 @@ public class Intake extends Subsystem {
   @Override
   public void initDefaultCommand() {
   }
-}
+  
+}//end of Intake
