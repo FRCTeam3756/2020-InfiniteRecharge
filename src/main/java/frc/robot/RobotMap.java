@@ -16,7 +16,8 @@ public class RobotMap {
 
 
     //controller and joystick ports
-    public static final int JOYSTICK_PORT_1 = 0;
+    public static final int JOYSTICK_PORT_DRIVER = 0;
+    public static final int JOYSTICK_PORT_OPERATOR = 2;
     //public static final int CONTROLLER_PORT1 = 0;
     //public static final int CONTROLLER_PORT2 = 2;
 
@@ -28,31 +29,36 @@ public class RobotMap {
     //This is the speed of the robot in auto
     public static final double AUTO_ROBOT_SPEED = 1;
 
-    public static final double PEAK_OUTPUT = 0.5;
+    public static final double PEAK_OUTPUT = 0.3;
 
-    public static final double KF = 0.4;
+    public static final double KF = 0.3;
 
     public static final double KP = 0.07;
     public static final double KI = 0.0;
     public static final double KD = 0.0;
     //public static final double AUTO_ROBOT_TURNING_SPEED = 1;
 
-    public static final int SOLE_IN = 6;
-    public static final int SOLE_OUT = 7;
+    public static final int SOLE_IN = 3;//was 6
+    public static final int SOLE_OUT = 2;//was 7
 
     public static final double TICK_SPEED = 2048;
 
-    public static final double INTAKE_SPEED = 0.2;
+    public static final double INTAKE_SPEED = 0.45;
+    public static final double INTAKE_STOPPER_SPEED = -0.1;
+    
     public static final int INTAKE_PORT = 2;
+    public static final int INTAKE_PORT_2 = 6;
+    public static final int INTAKE_STOPPER_PORT = 5;
+
     public static final int INTAKE_IN = 3;
     public static final int INTAKE_OUT = 2;
+    
 
     public static final int SHOOTER_PORT1 = 4;
     public static final int SHOOTER_PORT2 = 3;
 
-
     public static final int SHOOTER_SHOOT = 1;
-    public static final double SHOOTER_SPEED = 0.85;
+    public static final double SHOOTER_SPEED = 0.3;
 
 
 }//end of class RobotMap

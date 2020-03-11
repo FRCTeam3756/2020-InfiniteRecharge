@@ -42,8 +42,8 @@ public class Shooter extends SubsystemBase {
   // This method is the main method
   public void action(Joystick joy) {
 
-    if (joy.getRawButton(RobotMap.SHOOTER_SHOOT)) {
-      shoot();
+    if (joy.getZ() != 0) {
+      shoot(joy);
     } // If the shoot button on the joystick is pressed, run the shoot method
     else {
       off();
@@ -53,30 +53,11 @@ public class Shooter extends SubsystemBase {
 
   // This method makes the robot shoot the ball
   // It sets each victor to the shooter speed
-  private void shoot() {
-    victor1.set(-0.25);
-    victor2.set(-0.25);
-    try {
-      Thread.sleep(500);
-    } catch (InterruptedException e) {
-      e.printStackTrace();
-    }
-    victor1.set(-0.45);
-    victor2.set(-0.45);
-    try {
-      Thread.sleep(500);
-    } catch (InterruptedException e) {
-      e.printStackTrace();
-    }
-    victor1.set(-0.65);
-    victor2.set(-0.65);
-    try {
-      Thread.sleep(500);
-    } catch (InterruptedException e) {
-      e.printStackTrace();
-    }
-    victor1.set(-RobotMap.SHOOTER_SPEED);
-    victor2.set(-RobotMap.SHOOTER_SPEED);
+  private void shoot(Joystick joy) {
+    
+    //white on the inside
+    victor1.set(RobotMap.SHOOTER_SPEED * -(joy.getZ() + 1)/2);
+    victor2.set(RobotMap.SHOOTER_SPEED * -(joy.getZ() + 1)/2);
   }
 
   //This method makes the robot not shoot the ball

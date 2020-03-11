@@ -8,11 +8,15 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.Joystick;
 
+
+
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 //import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.TalonFXInvertType;
@@ -56,6 +60,7 @@ public class Robot extends TimedRobot {
 
   Joystick _joy = new Joystick(0);
 
+  Timer timer = new Timer();
 
   /**
    * This function is run when the robot is first started up and should be
@@ -67,7 +72,7 @@ public class Robot extends TimedRobot {
     m_chooser.addOption("My Auto", kCustomAuto);
     SmartDashboard.putData("Auto choices", m_chooser);
 
-    //int encoderPos =_talonRightMaster.getSelectedSensorPosition();
+    
   }
   
 
@@ -104,35 +109,58 @@ public class Robot extends TimedRobot {
   @Override
   public void autonomousInit() {
     m_autoSelected = m_chooser.getSelected();
-    m_autoSelected = SmartDashboard.getString("Auto Selector", kDefaultAuto);
+    m_autoSelected = SmartDashboard.getString("Auto Selector ", kDefaultAuto);
     System.out.println("Auto selected: " + m_autoSelected);
-  }
 
-  /**
+  // Falcon_500_Config._talonLeftMaster.set(ControlMode.MotionMagic, 40960);
+  // Falcon_500_Config._talonRightMaster.set(ControlMode.MotionMagic, -40960);
+
+    timer.reset();
+    timer.start();
+
+  // Falcon_500_Config._talonRightMaster.configSelectedFeedbackSensor(FeedbackDevice.IntegratedSensor, 0, 1);
+   //Falcon_500_Config._talonRightMaster.configSelectedFeedbackSensor(FeedbackDevice.IntegratedSensor, 0, 1);
+ 
+
+}
+
+  /**S
    * This function is called periodically during autonomous.
    */
   @Override
   public void autonomousPeriodic() {
-    //Falcon_500_Config._talonLeftMaster.set(ControlMode.MotionMagic, 4096*10);
-    //Falcon_500_Config._talonRightMaster.set(ControlMode.MotionMagic, 4096*-10);
-    Falcon_500_Config._talonLeftMaster.set(ControlMode.Position, RobotMap.TICK_SPEED*10);
-    Falcon_500_Config._talonRightMaster.set(ControlMode.Position, RobotMap.TICK_SPEED*-10);
+    //Falcon_500_Config._talonLeftMaster.set(ControlMode.PercentOutput, 2048);
+    //Falcon_500_Config._talonRightMaster.set(ControlMode.PercentOutput, 2048);
+    
+    if (timer.get() < 1.5) {
+
+      Falcon_500_Config._talonLeftMaster.set(ControlMode.Velocity, RobotMap.TICK_SPEED);
+      Falcon_500_Config._talonRightMaster.set(ControlMode.Velocity, RobotMap.TICK_SPEED);
+
+    }
+
+    //if (Falcon_500_Config._talonRightMaster.getSelectedSensorPosition() < RobotMap.TICK_SPEED*2) {
+
+    //}
+
   }
+
 
   /**
    * This function is called periodically during operator control.
    */
   @Override
   public void teleopInit() {
-
+    //Falcon_500_Config._talonLeftMaster.set(ControlMode.MotionMagic, 40960);
+    //Falcon_500_Config._talonRightMaster.set(ControlMode.MotionMagic, -40960);
   }
+
   @Override
   public void teleopPeriodic() {
-    DriveTrain.getInstance().drive(OI.getInstance().getJoystick1());
-    IntakeSole.getInstance().action(OI.getInstance().getJoystick1());
-    Intake.getInstance().move(OI.getInstance().getJoystick1());
-    Shooter.getInstance().action(OI.getInstance().getJoystick1());
-
+    DriveTrain.getInstance().drive(OI.getInstance().getDriverJoystck());
+    IntakeSole.getInstance().action(OI.getInstance().getOperatorJoystick());
+    Intake.getInstance().move(OI.getInstance().getOperatorJoystick());
+    Shooter.getInstance().action(OI.getInstance().getOperatorJoystick()); 
   }
 
   /**

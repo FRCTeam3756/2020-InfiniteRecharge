@@ -16,29 +16,36 @@ public class OI {
 
     //create instance of OI
     public static OI instance;
+
+    //add Joystick(s)
+    public static Joystick driverJoystick;
+    public static Joystick operatorJoystick;
+
+
+
     public static OI getInstance() {
-        if (instance == null) 
-            instance = new OI(RobotMap.JOYSTICK_PORT_1);
-       
+        if (instance == null) {
+            instance = new OI(RobotMap.JOYSTICK_PORT_DRIVER, RobotMap.JOYSTICK_PORT_OPERATOR);
+        }
        return instance;
     }
 
 
-    //add Joystick(s)
-    public static Joystick joy1;
-
 
     /*This is the OI class constructor
-    * the port variable is the joystick port
+    *@param port the port variable is the joystick port
     */
-    private OI (int port) {
-        joy1 = new Joystick(port);
+    private OI (int port, int port2) {
+        driverJoystick = new Joystick(port);
+        operatorJoystick = new Joystick(port2);
     }
 
     //The first joystick
-    public Joystick getJoystick1() {
-        return joy1;
+    public Joystick getDriverJoystck() {
+        return driverJoystick;
     }
-    
+    public Joystick getOperatorJoystick() {
+        return operatorJoystick;
+    }
 
 }

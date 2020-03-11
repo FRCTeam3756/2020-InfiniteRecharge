@@ -74,6 +74,8 @@ public class Falcon_500_Config extends PIDSubsystem {
 
     _talonRightMaster.configMotionAcceleration(1000);
     _talonRightMaster.configMotionCruiseVelocity(8192);
+
+    
   }
 
   @Override

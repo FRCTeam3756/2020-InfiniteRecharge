@@ -38,10 +38,14 @@ public class DriveTrain extends SubsystemBase {
   *This method allows the robot to drive
   */
   public void drive(final Joystick controller){
-    leftVelocity = (-1 * controller.getX() + controller.getY()) * RobotMap.TICK_SPEED*0.75;
-    rightVelocity = (-1 * controller.getX() - controller.getY()) * RobotMap.TICK_SPEED*0.75;
-    Falcon_500_Config._talonLeftMaster.set(ControlMode.Velocity, leftVelocity);
-    Falcon_500_Config._talonRightMaster.set(ControlMode.Velocity, rightVelocity);
+    
+    leftVelocity = (-1 * controller.getX() + controller.getY()) * RobotMap.TICK_SPEED;
+    rightVelocity = (-1 * controller.getX() - controller.getY()) * RobotMap.TICK_SPEED;
+    
+    if(RobotMap.SHOOTER_SPEED * -(controller.getZ() + 1)/2 > 0){
+      Falcon_500_Config._talonLeftMaster.set(ControlMode.Velocity, leftVelocity);
+      Falcon_500_Config._talonRightMaster.set(ControlMode.Velocity, rightVelocity);
+    }
 
   }  
 
